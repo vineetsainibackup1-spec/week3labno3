@@ -17,6 +17,9 @@
     "url": "https://github.com/vineetsainibackup1-spec/week3labno3/issues"
   },
   "homepage": "https://github.com/vineetsainibackup1-spec/week3labno3#readme",
+  "jest": {
+    "testMatch": ["**/?(*.)+(spec|test|tests).?([mc])[jt]s?(x)"]
+  },
   "devDependencies": {
     "jest": "^30.2.0"
   }

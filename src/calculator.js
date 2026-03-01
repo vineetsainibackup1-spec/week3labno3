@@ -263,15 +263,17 @@ function interactiveMode() {
   promptUser();
 }
 
-// Main execution
-const args = process.argv.slice(2);
+// Main execution - only run if this file is executed directly
+if (require.main === module) {
+  const args = process.argv.slice(2);
 
-if (args.length === 0) {
-  // Run in interactive mode if no arguments provided
-  interactiveMode();
-} else {
-  // Run calculation from command line arguments
-  calculateFromArgs(args);
+  if (args.length === 0) {
+    // Run in interactive mode if no arguments provided
+    interactiveMode();
+  } else {
+    // Run calculation from command line arguments
+    calculateFromArgs(args);
+  }
 }
 
 module.exports = Calculator;
