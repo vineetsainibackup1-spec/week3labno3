@@ -199,3 +199,220 @@ describe('Calculator - Basic Arithmetic Operations', () => {
     });
   });
 });
+
+// ========== ADVANCED OPERATIONS TESTS ==========
+describe('Calculator - Advanced Arithmetic Operations', () => {
+  
+  // ========== MODULO TESTS ==========
+  describe('Modulo (%)', () => {
+    test('should calculate modulo of two positive numbers', () => {
+      expect(Calculator.modulo(5, 2)).toBe(1);
+    });
+
+    test('should calculate modulo from image example', () => {
+      expect(Calculator.modulo(5, 2)).toBe(1);
+    });
+
+    test('should calculate modulo with larger numbers', () => {
+      expect(Calculator.modulo(20, 6)).toBe(2);
+    });
+
+    test('should calculate modulo resulting in zero', () => {
+      expect(Calculator.modulo(10, 5)).toBe(0);
+    });
+
+    test('should calculate modulo of number smaller than divisor', () => {
+      expect(Calculator.modulo(3, 5)).toBe(3);
+    });
+
+    test('should calculate modulo with negative dividend', () => {
+      expect(Calculator.modulo(-5, 2)).toBe(-1);
+    });
+
+    test('should calculate modulo with negative divisor', () => {
+      expect(Calculator.modulo(5, -2)).toBe(1);
+    });
+
+    test('should calculate modulo with both negative numbers', () => {
+      expect(Calculator.modulo(-5, -2)).toBe(-1);
+    });
+
+    test('should throw error when modulo by zero', () => {
+      expect(() => Calculator.modulo(10, 0)).toThrow('Cannot perform modulo by zero');
+    });
+
+    test('should calculate modulo with decimals', () => {
+      expect(Calculator.modulo(5.5, 2.5)).toBeCloseTo(0.5);
+    });
+  });
+
+  // ========== POWER/EXPONENTIATION TESTS ==========
+  describe('Power (^)', () => {
+    test('should calculate power from image example', () => {
+      expect(Calculator.power(2, 3)).toBe(8);
+    });
+
+    test('should calculate simple power', () => {
+      expect(Calculator.power(3, 4)).toBe(81);
+    });
+
+    test('should calculate power of two', () => {
+      expect(Calculator.power(2, 8)).toBe(256);
+    });
+
+    test('should raise to power of zero', () => {
+      expect(Calculator.power(5, 0)).toBe(1);
+    });
+
+    test('should raise to power of one', () => {
+      expect(Calculator.power(7, 1)).toBe(7);
+    });
+
+    test('should calculate zero to any power', () => {
+      expect(Calculator.power(0, 5)).toBe(0);
+    });
+
+    test('should calculate one to any power', () => {
+      expect(Calculator.power(1, 100)).toBe(1);
+    });
+
+    test('should calculate negative number to even power', () => {
+      expect(Calculator.power(-2, 4)).toBe(16);
+    });
+
+    test('should calculate negative number to odd power', () => {
+      expect(Calculator.power(-2, 3)).toBe(-8);
+    });
+
+    test('should calculate power with decimal base', () => {
+      expect(Calculator.power(2.5, 2)).toBeCloseTo(6.25);
+    });
+
+    test('should calculate power with decimal exponent', () => {
+      expect(Calculator.power(4, 0.5)).toBe(2);
+    });
+
+    test('should calculate large powers', () => {
+      expect(Calculator.power(10, 3)).toBe(1000);
+    });
+  });
+
+  // ========== SQUARE ROOT TESTS ==========
+  describe('Square Root (√)', () => {
+    test('should calculate square root from image example', () => {
+      expect(Calculator.squareRoot(16)).toBe(4);
+    });
+
+    test('should calculate perfect square root', () => {
+      expect(Calculator.squareRoot(25)).toBe(5);
+    });
+
+    test('should calculate square root of one', () => {
+      expect(Calculator.squareRoot(1)).toBe(1);
+    });
+
+    test('should calculate square root of zero', () => {
+      expect(Calculator.squareRoot(0)).toBe(0);
+    });
+
+    test('should calculate square root of decimal', () => {
+      expect(Calculator.squareRoot(2.25)).toBe(1.5);
+    });
+
+    test('should calculate square root of non-perfect square', () => {
+      expect(Calculator.squareRoot(2)).toBeCloseTo(1.414, 3);
+    });
+
+    test('should calculate square root of large number', () => {
+      expect(Calculator.squareRoot(10000)).toBe(100);
+    });
+
+    test('should throw error when square root of negative number', () => {
+      expect(() => Calculator.squareRoot(-4)).toThrow('Cannot calculate square root of negative number');
+    });
+
+    test('should throw error when square root of -1', () => {
+      expect(() => Calculator.squareRoot(-1)).toThrow('Cannot calculate square root of negative number');
+    });
+
+    test('should throw error when square root of large negative number', () => {
+      expect(() => Calculator.squareRoot(-100)).toThrow('Cannot calculate square root of negative number');
+    });
+  });
+
+  // ========== ADVANCED INTEGRATION TESTS ==========
+  describe('Integration - Advanced Operations', () => {
+    test('should perform modulo then add result', () => {
+      const mod = Calculator.modulo(20, 6);
+      const add = Calculator.add(mod, 10);
+      expect(add).toBe(12);
+    });
+
+    test('should perform power then divide', () => {
+      const pow = Calculator.power(2, 8);
+      const div = Calculator.divide(pow, 4);
+      expect(div).toBe(64);
+    });
+
+    test('should perform square root then multiply', () => {
+      const sqrt = Calculator.squareRoot(16);
+      const mul = Calculator.multiply(sqrt, 5);
+      expect(mul).toBe(20);
+    });
+
+    test('should handle all operations from extended example', () => {
+      // 5 % 2 = 1
+      const mod = Calculator.modulo(5, 2);
+      expect(mod).toBe(1);
+      
+      // 2 ^ 3 = 8
+      const pow = Calculator.power(2, 3);
+      expect(pow).toBe(8);
+      
+      // √16 = 4
+      const sqrt = Calculator.squareRoot(16);
+      expect(sqrt).toBe(4);
+    });
+
+    test('should chain multiple advanced operations', () => {
+      let result = 100;
+      result = Calculator.squareRoot(result);  // √100 = 10
+      result = Calculator.power(result, 2);    // 10^2 = 100
+      result = Calculator.modulo(result, 30);  // 100 % 30 = 10
+      expect(result).toBe(10);
+    });
+  });
+
+  // ========== ADVANCED EDGE CASES ==========
+  describe('Edge Cases - Advanced Operations', () => {
+    test('should handle modulo with very small numbers', () => {
+      const result = Calculator.modulo(0.5, 0.3);
+      expect(result).toBeCloseTo(0.2);
+    });
+
+    test('should handle power resulting in very large number', () => {
+      const result = Calculator.power(10, 10);
+      expect(result).toBe(10000000000);
+    });
+
+    test('should handle power with negative exponent', () => {
+      expect(Calculator.power(2, -2)).toBe(0.25);
+    });
+
+    test('should handle square root of very small positive number', () => {
+      const result = Calculator.squareRoot(0.01);
+      expect(result).toBe(0.1);
+    });
+
+    test('should maintain precision across advanced operations', () => {
+      const sqrt = Calculator.squareRoot(2);
+      const pow = Calculator.power(sqrt, 2);
+      expect(pow).toBeCloseTo(2);
+    });
+
+    test('should handle modulo of decimal by decimal', () => {
+      const result = Calculator.modulo(7.5, 2.5);
+      expect(result).toBeCloseTo(0);
+    });
+  });
+});
